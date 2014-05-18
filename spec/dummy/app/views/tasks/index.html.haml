@@ -1,0 +1,8 @@
+%h1= Task.model_name.human(:count => 2)
+
+= simple_search_form_for @ransack, @ransack_params do |f|
+  = f.input :name_cont
+  = f.submit
+
+- @tasks.each do |task|
+  = link_to task.name, task_path(task)

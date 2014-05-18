@@ -7,6 +7,7 @@ module SimpleFormRansackHelper
     end
     
     opts[:url] = request.original_url unless opts[:url]
+    opts[:method] = "get" unless opts[:method]
     args << opts
     
     model_class = resource.klass

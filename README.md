@@ -32,7 +32,7 @@ end
 ```
 
 In your views:
-```ruby
+```
 <%= simple_search_form_for @ransack, @ransack_params do |f| %>
   <%= f.input :name_cont %>
   <%= f.submit %>

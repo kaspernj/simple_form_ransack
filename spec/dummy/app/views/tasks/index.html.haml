@@ -2,6 +2,7 @@
 
 = simple_search_form_for @ransack, @ransack_params do |f|
   = f.input :name_cont
+  = f.input :finished_eq, :as => :select, :collection => {"Finished" => "1", "Not finished" => ""}
   = f.submit
 
 - @tasks.each do |task|

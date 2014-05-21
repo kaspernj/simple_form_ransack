@@ -11,7 +11,7 @@ class SimpleFormRansack::FormProxy
   
   def input(name, *args)
     if args.last.is_a?(Hash)
-      opts = args.last
+      opts = args.pop
     else
       opts = {}
     end

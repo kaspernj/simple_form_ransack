@@ -1,0 +1,18 @@
+language: ruby
+rvm:
+  - ruby-1.9.3-p484
+
+before_script:
+  - RAILS_ENV=test
+
+notifications:
+  email: false
+
+cache:
+  - bundler
+
+addons:
+  code_climate:
+    repo_token: f54267de73817e8dcc14ccfaff327056723eaae101507c70b391bec5d5825c73
+
+script: "bundle exec rspec --format progress"

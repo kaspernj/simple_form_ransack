@@ -20,16 +20,51 @@ class SimpleFormRansack::FormProxy
     as = as_from_opts(opts)
     
     input_html = opts.delete(:input_html) || {}
-    input_html[:name] = "q[#{name}]" unless input_html.key?(:name)
     
     if as == "select"
-      opts[:selected] = @params[name] if !input_html.key?(:selected) && @params[name]
+      if !opts.key?(:selected)
+        if @params[name]
+          opts[:selected] = @params[name]
+        else
+          opts[:selected] = ""
+        end
+      end
+    elsif as == "check_boxes"
+      if !opts.key?(:checked)
+        if @params[name]
+          opts[:checked] = @params[name]
+        else
+          opts[:checked] = ""
+        end
+      end
     else
-      input_html[:value] = @params[name] if !input_html.key?(:value) && @params[name]
+      if !input_html.key?(:value)
+        if @params[name]
+          input_html[:value] = @params[name]
+        else
+          input_html[:value] = ""
+        end
+      end
+    end
+    
+    unless input_html.key?(:name)
+      input_html[:name] = "q[#{name}]"
+      input_html[:name] << "[]" if as == "check_boxes"
     end
     
     opts[:input_html] = input_html
     opts[:required] = false unless opts.key?(:required)
+    
+    if !opts.key?(:label)
+      attribute_inspector = ::SimpleFormRansack::AttributeInspector.new(
+        :name => attribute_name,
+        :instance => @object,
+        :clazz => @class
+      )
+      if attribute_inspector.generated_label?
+        opts[:label] = attribute_inspector.generated_label
+      end
+    end
     
     args << opts
     return @form.input(attribute_name, *args)
@@ -40,6 +75,14 @@ class SimpleFormRansack::FormProxy
   end
   
 private
+  
+  def as_list?(opts)
+    if as_from_opts(opts) == "select"
+      return true
+    else
+      return false
+    end
+  end
   
   def as_from_opts(opts)
     if opts[:as].present?
@@ -52,7 +95,7 @@ private
   end
   
   def real_name(name, opts)
-    match = name.to_s.match(/^(.+)_(eq|cont|eq_any)$/)
+    match = name.to_s.match(/^(.+)_(eq|cont|eq_any|gteq|lteq|gt|lt)$/)
     if match
       return match[1]
     else

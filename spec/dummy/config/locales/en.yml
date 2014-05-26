@@ -21,6 +21,22 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      user:
+        id: Identification number
+      user_role:
+        role: Rank
+      task:
+        finished: Task done
+        user_id: Customer ID
+    models:
+      user:
+        one: Customer
+        other: Customers
+      user_role:
+        one: Customer role
+        other: Customer roles
   simple_form:
     hints:
       task:

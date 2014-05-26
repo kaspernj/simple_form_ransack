@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/kaspernj/simple_form_ransack.png)](https://codeclimate.com/github/kaspernj/simple_form_ransack)
+
 # SimpleFormRansack
 
 SimpleForm and Ransack combined.

@@ -11,6 +11,9 @@ notifications:
 cache:
   - bundler
 
+before_script:
+  - RAILS_ENV=test bundle exec rake db:migrate
+
 addons:
   code_climate:
     repo_token: f54267de73817e8dcc14ccfaff327056723eaae101507c70b391bec5d5825c73

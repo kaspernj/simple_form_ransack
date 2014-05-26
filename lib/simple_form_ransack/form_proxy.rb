@@ -18,9 +18,44 @@ class SimpleFormRansack::FormProxy
     
     attribute_name = real_name(name, opts)
     as = as_from_opts(opts)
-    
     input_html = opts.delete(:input_html) || {}
+    set_value(as, name, opts, input_html)
+    set_name(as, name, input_html)
+    set_label(attribute_name, opts, input_html)
     
+    opts[:required] = false unless opts.key?(:required)
+    opts[:input_html] = input_html
+    args << opts
+    return @form.input(attribute_name, *args)
+  end
+  
+  def method_missing(method_name, *args, &blk)
+    @form.__send__(method_name, *args, &blk)
+  end
+  
+private
+  
+  def set_label(attribute_name, opts, input_html)
+    if !opts.key?(:label)
+      attribute_inspector = ::SimpleFormRansack::AttributeInspector.new(
+        :name => attribute_name,
+        :instance => @object,
+        :clazz => @class
+      )
+      if attribute_inspector.generated_label?
+        opts[:label] = attribute_inspector.generated_label
+      end
+    end
+  end
+  
+  def set_name(as, name, input_html)
+    unless input_html.key?(:name)
+      input_html[:name] = "q[#{name}]"
+      input_html[:name] << "[]" if as == "check_boxes"
+    end
+  end
+  
+  def set_value(as, name, opts, input_html)
     if as == "select"
       if !opts.key?(:selected)
         if @params[name]
@@ -29,7 +64,7 @@ class SimpleFormRansack::FormProxy
           opts[:selected] = ""
         end
       end
-    elsif as == "check_boxes"
+    elsif as == "check_boxes" || as == "radio_buttons"
       if !opts.key?(:checked)
         if @params[name]
           opts[:checked] = @params[name]
@@ -46,35 +81,7 @@ class SimpleFormRansack::FormProxy
         end
       end
     end
-    
-    unless input_html.key?(:name)
-      input_html[:name] = "q[#{name}]"
-      input_html[:name] << "[]" if as == "check_boxes"
-    end
-    
-    opts[:input_html] = input_html
-    opts[:required] = false unless opts.key?(:required)
-    
-    if !opts.key?(:label)
-      attribute_inspector = ::SimpleFormRansack::AttributeInspector.new(
-        :name => attribute_name,
-        :instance => @object,
-        :clazz => @class
-      )
-      if attribute_inspector.generated_label?
-        opts[:label] = attribute_inspector.generated_label
-      end
-    end
-    
-    args << opts
-    return @form.input(attribute_name, *args)
   end
-  
-  def method_missing(method_name, *args, &blk)
-    @form.__send__(method_name, *args, &blk)
-  end
-  
-private
   
   def as_list?(opts)
     if as_from_opts(opts) == "select"

@@ -17,7 +17,7 @@ class SimpleFormRansack::FormProxy
     end
     
     attribute_name = real_name(name, opts)
-    as = as_from_opts(opts)
+    as = as_from_opts(attribute_name, opts)
     input_html = opts.delete(:input_html) || {}
     set_value(as, name, opts, input_html)
     set_name(as, name, input_html)
@@ -72,6 +72,14 @@ private
           opts[:checked] = ""
         end
       end
+    elsif as == "boolean"
+      if !input_html.key?(:checked)
+        if @params[name] == "1"
+          input_html[:checked] = "checked"
+        else
+          input_html[:checked] = nil
+        end
+      end
     else
       if !input_html.key?(:value)
         if @params[name]
@@ -91,11 +99,17 @@ private
     end
   end
   
-  def as_from_opts(opts)
+  def as_from_opts(attribute_name, opts)
     if opts[:as].present?
       return opts[:as].to_s
     elsif opts[:collection]
       return "select"
+    end
+    
+    if column = @class.columns_hash[attribute_name]
+      if column.type == :boolean
+        return "boolean"
+      end
     end
     
     return "text"

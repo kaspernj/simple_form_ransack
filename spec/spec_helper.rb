@@ -9,6 +9,7 @@ require 'rspec/autorun'
 require 'ransack'
 require 'haml-rails'
 require 'simple_form'
+require 'country_select'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

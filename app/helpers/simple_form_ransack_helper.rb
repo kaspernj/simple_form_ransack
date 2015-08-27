@@ -15,9 +15,9 @@ module SimpleFormRansackHelper
 
     simple_form_for(sample_model, *args) do |form|
       form_proxy = SimpleFormRansack::FormProxy.new(
-        :resource => resource,
-        :form => form,
-        :params => params,
+        resource: resource,
+        form: form,
+        params: params,
       )
 
       yield form_proxy

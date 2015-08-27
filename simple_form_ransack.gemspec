@@ -24,5 +24,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "ransack"
   s.add_development_dependency "haml-rails"
   s.add_development_dependency "simple_form"
+  s.add_development_dependency "country_select"
   s.add_development_dependency "codeclimate-test-reporter"
 end

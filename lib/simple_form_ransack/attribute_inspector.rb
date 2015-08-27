@@ -46,7 +46,7 @@ class SimpleFormRansack::AttributeInspector
       puts "Reflection: #{reflection}" if @debug
 
       @current_clazz = reflection.klass
-      @generated_name_classes << {:clazz => @current_clazz, :reflection => reflection}
+      @generated_name_classes << {clazz: @current_clazz, reflection: reflection}
     end
   end
 
@@ -63,7 +63,7 @@ class SimpleFormRansack::AttributeInspector
     if @generated_name_classes.last
       clazz, reflection = @generated_name_classes.last[:clazz], @generated_name_classes.last[:reflection]
       if reflection.collection?
-        name << clazz.model_name.human(:count => 2)
+        name << clazz.model_name.human(count: 2)
       else
         name << clazz.model_name.human
       end
@@ -79,15 +79,15 @@ private
 
   def reflection_by_builtup
     total_name = @name_builtup.join("_")
-    result = @current_clazz.reflections.select{ |name, reflection| name.to_s == total_name }.first
-    return {:name => result[0], :reflection => result[1]} if result
+    result = @current_clazz.reflections.select { |name, reflection| name.to_s == total_name }.first
+    return {name: result[0], reflection: result[1]} if result
     return false
   end
 
   def attribute_by_builtup
     total_name = @name_builtup.join("_")
-    result = @current_clazz.attribute_names.select{ |name| name.to_s == total_name }.first
-    return {:name => result} if result
+    result = @current_clazz.attribute_names.select { |name| name.to_s == total_name }.first
+    return {name: result} if result
     return false
   end
 end

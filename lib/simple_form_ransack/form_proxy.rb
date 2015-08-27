@@ -38,9 +38,9 @@ private
   def set_label(attribute_name, opts, input_html)
     if !opts.key?(:label)
       attribute_inspector = ::SimpleFormRansack::AttributeInspector.new(
-        :name => attribute_name,
-        :instance => @object,
-        :clazz => @class
+        name: attribute_name,
+        instance: @object,
+        clazz: @class
       )
       if attribute_inspector.generated_label?
         opts[:label] = attribute_inspector.generated_label
@@ -102,7 +102,7 @@ private
   def as_from_opts(attribute_name, opts)
     if opts[:as].present?
       return opts[:as].to_s
-    elsif opts[:collection]
+    elsif opts[:collection] || attribute_name.end_with?('country')
       return "select"
     end
 

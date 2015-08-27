@@ -116,7 +116,7 @@ private
   end
 
   def real_name(name, opts)
-    match = name.to_s.match(/^(.+)_(eq|cont|eq_any|gteq|lteq|gt|lt)$/)
+    match = name.to_s.match(/^(.+)_(eq|cont|eq_any|gteq|lteq|gt|lt|start|end)$/)
     if match
       return match[1]
     else

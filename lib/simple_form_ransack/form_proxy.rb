@@ -5,36 +5,36 @@ class SimpleFormRansack::FormProxy
     @class = @resource.klass
     @params = args[:params]
     @form = args[:form]
-    
+
     raise "No params given in arguments: #{args.keys}" unless @params
   end
-  
+
   def input(name, *args)
     if args.last.is_a?(Hash)
       opts = args.pop
     else
       opts = {}
     end
-    
+
     attribute_name = real_name(name, opts)
     as = as_from_opts(attribute_name, opts)
     input_html = opts.delete(:input_html) || {}
     set_value(as, name, opts, input_html)
     set_name(as, name, input_html)
     set_label(attribute_name, opts, input_html)
-    
+
     opts[:required] = false unless opts.key?(:required)
     opts[:input_html] = input_html
     args << opts
     return @form.input(attribute_name, *args)
   end
-  
+
   def method_missing(method_name, *args, &blk)
     @form.__send__(method_name, *args, &blk)
   end
-  
+
 private
-  
+
   def set_label(attribute_name, opts, input_html)
     if !opts.key?(:label)
       attribute_inspector = ::SimpleFormRansack::AttributeInspector.new(
@@ -47,14 +47,14 @@ private
       end
     end
   end
-  
+
   def set_name(as, name, input_html)
     unless input_html.key?(:name)
       input_html[:name] = "q[#{name}]"
       input_html[:name] << "[]" if as == "check_boxes"
     end
   end
-  
+
   def set_value(as, name, opts, input_html)
     if as == "select"
       if !opts.key?(:selected)
@@ -90,7 +90,7 @@ private
       end
     end
   end
-  
+
   def as_list?(opts)
     if as_from_opts(opts) == "select"
       return true
@@ -98,25 +98,25 @@ private
       return false
     end
   end
-  
+
   def as_from_opts(attribute_name, opts)
     if opts[:as].present?
       return opts[:as].to_s
     elsif opts[:collection]
       return "select"
     end
-    
+
     if column = @class.columns_hash[attribute_name]
       if column.type == :boolean
         return "boolean"
       end
     end
-    
+
     return "text"
   end
-  
+
   def real_name(name, opts)
-    match = name.to_s.match(/^(.+)_(eq|cont|eq_any|gteq|lteq|gt|lt)$/)
+    match = name.to_s.match(/^(.+)_(eq|cont|eq_any|gteq|lteq|gt|lt|start|end)$/)
     if match
       return match[1]
     else

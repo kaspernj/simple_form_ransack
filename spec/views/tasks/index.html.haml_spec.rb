@@ -6,10 +6,10 @@ describe "tasks/index.html.haml" do
     assign(:ransack, Task.ransack({}))
     assign(:tasks, Task.all)
   end
-  
+
   it "displays the correct hints" do
     render
-    
+
     rendered.should include "<span class=\"hint\">Enter a part of the name of the user you are searching for.</span>"
     rendered.should include "Task done"
     rendered.should include "name=\"q[name_cont]\""

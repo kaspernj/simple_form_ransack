@@ -2,6 +2,8 @@
 
 = simple_search_form_for @ransack, @ransack_params do |f|
   = f.input :name_cont
+  = f.input :name_start
+  = f.input :name_end
   = f.input :finished_eq, :as => :select, :collection => {"Finished" => "1", "Not finished" => ""}
   = f.input :user_id_eq
   = f.input :user_user_roles_role_eq

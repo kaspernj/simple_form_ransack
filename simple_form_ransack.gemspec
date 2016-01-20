@@ -1,4 +1,4 @@
-$:.push File.expand_path("../lib", __FILE__)
+$LOAD_PATH.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
 require "simple_form_ransack/version"
@@ -26,4 +26,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simple_form"
   s.add_development_dependency "country_select"
   s.add_development_dependency "codeclimate-test-reporter"
+  s.add_development_dependency "rubocop"
 end

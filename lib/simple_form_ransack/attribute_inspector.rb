@@ -13,7 +13,7 @@ class SimpleFormRansack::AttributeInspector
     @current_clazz = @clazz
     @name_builtup = []
 
-    has_attribute_directly = @clazz.attribute_names.select{ |name| name.to_s == @ransack_name.to_s }.any?
+    has_attribute_directly = @clazz.attribute_names.select { |name| name.to_s == @ransack_name.to_s }.any?
 
     research unless has_attribute_directly
   end
@@ -25,9 +25,11 @@ class SimpleFormRansack::AttributeInspector
 
       # The last part should be the attribute name.
       if index == @name_parts.length - 1
-        if attribute_result = attribute_by_builtup
-          puts "Attribute was: #{attribute_result[:name]}" if @debug
-          @attribute = attribute_result[:name]
+        attribute_result = attribute_by_builtup
+
+        if attribute_result
+          puts "Attribute was: #{attribute_result.fetch(:name)}" if @debug
+          @attribute = attribute_result.fetch(:name)
           break
         else
           puts "Not found: #{@name_builtup.join("_")}" if @debug
@@ -36,11 +38,12 @@ class SimpleFormRansack::AttributeInspector
       end
 
       # Try next - maybe next key need to be added? (which is common!)
-      next unless reflection_result = reflection_by_builtup
+      reflection_result = reflection_by_builtup
+      next unless reflection_result
 
       @name_builtup = []
-      name = reflection_result[:name]
-      reflection = reflection_result[:reflection]
+      name = reflection_result.fetch(:name)
+      reflection = reflection_result.fetch(:reflection)
 
       puts "Name: #{name}" if @debug
       puts "Reflection: #{reflection}" if @debug
@@ -53,7 +56,7 @@ class SimpleFormRansack::AttributeInspector
   # Returns true if a complicated label could be generated and simple form should not do this itself.
   def generated_label?
     return true if @attribute && @generated_name_classes.any?
-    return false
+    false
   end
 
   # Generates the complicated label and returns it.
@@ -61,7 +64,9 @@ class SimpleFormRansack::AttributeInspector
     name = ""
 
     if @generated_name_classes.last
-      clazz, reflection = @generated_name_classes.last[:clazz], @generated_name_classes.last[:reflection]
+      clazz = @generated_name_classes.last.fetch(:clazz)
+      reflection = @generated_name_classes.last.fetch(:reflection)
+
       if reflection.collection?
         name << clazz.model_name.human(count: 2)
       else
@@ -72,22 +77,22 @@ class SimpleFormRansack::AttributeInspector
     name << " " unless name.empty?
     name << @current_clazz.human_attribute_name(@attribute).to_s.downcase
 
-    return name
+    name
   end
 
 private
 
   def reflection_by_builtup
     total_name = @name_builtup.join("_")
-    result = @current_clazz.reflections.select { |name, reflection| name.to_s == total_name }.first
+    result = @current_clazz.reflections.find { |name, _reflection| name.to_s == total_name }
     return {name: result[0], reflection: result[1]} if result
-    return false
+    false
   end
 
   def attribute_by_builtup
     total_name = @name_builtup.join("_")
-    result = @current_clazz.attribute_names.select { |name| name.to_s == total_name }.first
+    result = @current_clazz.attribute_names.find { |name| name.to_s == total_name }
     return {name: result} if result
-    return false
+    false
   end
 end

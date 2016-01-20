@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "tasks/index.html.haml" do
   before do
-    assign(:ransack_params, finished_eq: "1", user_country_eq: 'DK')
+    assign(:ransack_params, finished_eq: "1", user_country_eq: "DK")
     assign(:ransack, Task.ransack({}))
     assign(:tasks, Task.all)
   end

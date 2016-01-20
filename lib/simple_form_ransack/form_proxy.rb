@@ -116,7 +116,7 @@ private
   end
 
   def real_name(name, opts)
-    predicates = Ransack::Configuration.preidcates.map(&:first).join("|")
+    predicates = Ransack::Configuration.predicates.map(&:first).join("|")
     match = name.to_s.match(/^(.+)_(#{predicates})$/)
     if match
       return match[1]

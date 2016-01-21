@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_form_ransack (0.0.9)
+    simple_form_ransack (0.0.10)
       rails (>= 4.0.0)
 
 GEM
@@ -150,4 +150,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.10.5
+   1.11.2

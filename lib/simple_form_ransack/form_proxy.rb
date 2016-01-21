@@ -1,4 +1,18 @@
 class SimpleFormRansack::FormProxy
+  def self.predicates_regex
+    unless @predicates_regex
+      predicates = Ransack::Configuration
+        .predicates
+        .map(&:first)
+        .map { |predicate| Regexp.escape(predicate) }
+        .join("|")
+
+      @predicates_regex = /^(.+)_(#{predicates})$/
+    end
+
+    @predicates_regex
+  end
+
   def initialize(args)
     @resource = args.fetch(:resource)
     @object = @resource.object
@@ -16,7 +30,7 @@ class SimpleFormRansack::FormProxy
       opts = {}
     end
 
-    attribute_name = real_name(name, opts)
+    attribute_name = real_name(name)
     as = as_from_opts(attribute_name, opts)
     input_html = opts.delete(:input_html) || {}
     set_value(as, name, opts, input_html)
@@ -106,7 +120,7 @@ private
     "text"
   end
 
-  def real_name(name, opts)
+  def real_name(name)
     match = name.to_s.match(SimpleFormRansack::FormProxy.predicates_regex)
 
     if match
@@ -114,17 +128,5 @@ private
     else
       raise "Couldn't figure out attribute name from: #{name}"
     end
-  end
-
-  def self.predicates_regex
-    @predicates_regex ||= nil
-
-    unless @predicates_regex
-      predicates = Ransack::Configuration.predicates.map(&:first).
-      map { |predicate| Regexp.escape(predicate) }.join("|")
-      @predicates_regex = /^(.+)_(#{predicates})$/
-    end
-
-    @predicates_regex
   end
 end

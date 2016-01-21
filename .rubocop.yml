@@ -35,6 +35,9 @@ Style/Documentation:
 Style/EmptyLines:
   Enabled: false
 
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 

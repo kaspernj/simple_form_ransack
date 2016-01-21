@@ -30,17 +30,22 @@ class SimpleFormRansack::FormProxy
       opts = {}
     end
 
-    attribute_name = real_name(name)
-    as = as_from_opts(attribute_name, opts)
+    match = name.to_s.match(SimpleFormRansack::FormProxy.predicates_regex)
+    if match
+      attribute_name = match[1]
+      match_type = match[2]
+    end
+
+    as = as_from_opts(attribute_name || name.to_s, opts)
     input_html = opts.delete(:input_html) || {}
     set_value(as, name, opts, input_html)
     set_name(as, name, input_html)
-    set_label(attribute_name, opts, input_html)
+    set_label(attribute_name, opts, as, match_type) if attribute_name
 
     opts[:required] = false unless opts.key?(:required)
     opts[:input_html] = input_html
     args << opts
-    @form.input(attribute_name, *args)
+    @form.input(attribute_name || name, *args)
   end
 
   def method_missing(method_name, *args, &blk)
@@ -49,16 +54,41 @@ class SimpleFormRansack::FormProxy
 
 private
 
-  def set_label(attribute_name, opts, _input_html)
-    unless opts.key?(:label)
+  def set_label(attribute_name, opts, as, match_type)
+    return if opts.key?(:label)
+
+    label_parts = []
+
+    attribute_name.split(/_(or|and)_/).each do |attribute_name_part|
+      if attribute_name_part == "and" || attribute_name_part == "or"
+        label_parts << ", " unless label_parts.empty?
+        next
+      end
+
       attribute_inspector = ::SimpleFormRansack::AttributeInspector.new(
-        name: attribute_name,
+        name: attribute_name_part,
         instance: @object,
-        clazz: @class
+        clazz: @class,
+        as: as
       )
 
       if attribute_inspector.generated_label?
-        opts[:label] = attribute_inspector.generated_label
+        label = attribute_inspector.generated_label
+      else
+        label = @class.human_attribute_name(attribute_name_part)
+      end
+
+      if label
+        label[0] = label[0].downcase if label_parts.any?
+        label_parts << label
+      end
+    end
+
+    if label_parts.any?
+      opts[:label] = label_parts.join
+
+      if match_type == "cont"
+        opts[:label] << " #{I18n.t("simple_form_ransack.match_types.contains")}"
       end
     end
   end
@@ -117,16 +147,6 @@ private
     column = @class.columns_hash[attribute_name]
     return "boolean" if column && column.type == :boolean
 
-    "text"
-  end
-
-  def real_name(name)
-    match = name.to_s.match(SimpleFormRansack::FormProxy.predicates_regex)
-
-    if match
-      return match[1]
-    else
-      raise "Couldn't figure out attribute name from: #{name}"
-    end
+    "string"
   end
 end

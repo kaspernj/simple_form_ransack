@@ -2,10 +2,11 @@
 class SimpleFormRansack::AttributeInspector
   def initialize(args)
     @args = args
-    @ransack_name = args[:name]
+    @ransack_name = args.fetch(:name)
     @name_parts = @ransack_name.to_s.split("_")
-    @instance = args[:instance]
-    @clazz = args[:clazz]
+    @instance = args.fetch(:instance)
+    @clazz = args.fetch(:clazz)
+    @as = args.fetch(:as)
     @debug = args[:debug]
 
     @generated_name_classes = []
@@ -13,9 +14,7 @@ class SimpleFormRansack::AttributeInspector
     @current_clazz = @clazz
     @name_builtup = []
 
-    has_attribute_directly = @clazz.attribute_names.select { |name| name.to_s == @ransack_name.to_s }.any?
-
-    research unless has_attribute_directly
+    research unless has_attribute_directly?
   end
 
   # Loop through the name parts and inspectors reflections with it.
@@ -75,7 +74,12 @@ class SimpleFormRansack::AttributeInspector
     end
 
     name << " " unless name.empty?
-    name << @current_clazz.human_attribute_name(@attribute).to_s.downcase
+
+    if @attribute == "id" && @as != "string"
+      # Don't add "id" to label, because it is being shown as a collection
+    else
+      name << @current_clazz.human_attribute_name(@attribute).to_s.downcase
+    end
 
     name
   end
@@ -94,5 +98,9 @@ private
     result = @current_clazz.attribute_names.find { |name| name.to_s == total_name }
     return {name: result} if result
     false
+  end
+
+  def has_attribute_directly?
+    @clazz.attribute_names.find { |name| name.to_s == @ransack_name.to_s }
   end
 end

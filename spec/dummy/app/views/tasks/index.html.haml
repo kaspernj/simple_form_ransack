@@ -4,10 +4,15 @@
   = f.input :name_cont
   = f.input :name_start
   = f.input :name_end
+  = f.input :user_email_or_name_cont
   = f.input :finished_eq, as: :select, collection: {"Finished" => "1", "Not finished" => ""}
   = f.input :user_id_eq
   = f.input :user_user_roles_role_eq
   = f.input :user_country_eq
+
+  -# Tests that it doesn't crash, but ignores, unreconized inputs, so it is possible to define ones own custom inputs.
+  = f.input :custom_input
+
   = f.submit
 
 - @tasks.each do |task|

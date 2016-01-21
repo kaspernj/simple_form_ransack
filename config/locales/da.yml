@@ -1,0 +1,4 @@
+da:
+  simple_form_ransack:
+    match_types:
+      contains: indeholder

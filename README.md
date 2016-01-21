@@ -22,6 +22,13 @@ module ApplicationHelper
 end
 ```
 
+In "application.rb" (for translations):
+```ruby
+class Application
+  config.i18n.load_path += SimpleFormRansack.locale_files
+end
+```
+
 # Usage
 
 In your controller:

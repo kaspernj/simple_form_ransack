@@ -2,14 +2,14 @@ require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 require_relative "dummy/config/environment"
-require 'rspec/rails'
-require 'rspec/autorun'
-require 'ransack'
-require 'haml-rails'
-require 'simple_form'
-require 'country_select'
+require "rspec/rails"
+require "rspec/autorun"
+require "ransack"
+require "haml-rails"
+require "simple_form"
+require "country_select"
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

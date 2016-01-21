@@ -6,7 +6,7 @@ describe TasksController do
 
     it "should not fail" do
       get :index, q: {finished_eq: "1"}
-      body = response.body
+      response.body.should_not eq nil
     end
   end
 end

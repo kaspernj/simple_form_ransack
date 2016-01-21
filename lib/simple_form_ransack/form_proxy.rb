@@ -1,10 +1,24 @@
 class SimpleFormRansack::FormProxy
+  def self.predicates_regex
+    unless @predicates_regex
+      predicates = Ransack::Configuration
+        .predicates
+        .map(&:first)
+        .map { |predicate| Regexp.escape(predicate) }
+        .join("|")
+
+      @predicates_regex = /^(.+)_(#{predicates})$/
+    end
+
+    @predicates_regex
+  end
+
   def initialize(args)
-    @resource = args[:resource]
+    @resource = args.fetch(:resource)
     @object = @resource.object
     @class = @resource.klass
-    @params = args[:params]
-    @form = args[:form]
+    @params = args.fetch(:params)
+    @form = args.fetch(:form)
 
     raise "No params given in arguments: #{args.keys}" unless @params
   end
@@ -16,7 +30,7 @@ class SimpleFormRansack::FormProxy
       opts = {}
     end
 
-    attribute_name = real_name(name, opts)
+    attribute_name = real_name(name)
     as = as_from_opts(attribute_name, opts)
     input_html = opts.delete(:input_html) || {}
     set_value(as, name, opts, input_html)
@@ -26,7 +40,7 @@ class SimpleFormRansack::FormProxy
     opts[:required] = false unless opts.key?(:required)
     opts[:input_html] = input_html
     args << opts
-    return @form.input(attribute_name, *args)
+    @form.input(attribute_name, *args)
   end
 
   def method_missing(method_name, *args, &blk)
@@ -35,13 +49,14 @@ class SimpleFormRansack::FormProxy
 
 private
 
-  def set_label(attribute_name, opts, input_html)
-    if !opts.key?(:label)
+  def set_label(attribute_name, opts, _input_html)
+    unless opts.key?(:label)
       attribute_inspector = ::SimpleFormRansack::AttributeInspector.new(
         name: attribute_name,
         instance: @object,
         clazz: @class
       )
+
       if attribute_inspector.generated_label?
         opts[:label] = attribute_inspector.generated_label
       end
@@ -49,15 +64,15 @@ private
   end
 
   def set_name(as, name, input_html)
-    unless input_html.key?(:name)
-      input_html[:name] = "q[#{name}]"
-      input_html[:name] << "[]" if as == "check_boxes"
-    end
+    return if input_html.key?(:name)
+
+    input_html[:name] = "q[#{name}]"
+    input_html[:name] << "[]" if as == "check_boxes"
   end
 
   def set_value(as, name, opts, input_html)
     if as == "select"
-      if !opts.key?(:selected)
+      unless opts.key?(:selected)
         if @params[name]
           opts[:selected] = @params[name]
         else
@@ -65,7 +80,7 @@ private
         end
       end
     elsif as == "check_boxes" || as == "radio_buttons"
-      if !opts.key?(:checked)
+      unless opts.key?(:checked)
         if @params[name]
           opts[:checked] = @params[name]
         else
@@ -73,15 +88,11 @@ private
         end
       end
     elsif as == "boolean"
-      if !input_html.key?(:checked)
-        if @params[name] == "1"
-          input_html[:checked] = "checked"
-        else
-          input_html[:checked] = nil
-        end
+      unless input_html.key?(:checked)
+        input_html[:checked] = ("checked" if @params[name] == "1")
       end
     else
-      if !input_html.key?(:value)
+      unless input_html.key?(:value)
         if @params[name]
           input_html[:value] = @params[name]
         else
@@ -92,33 +103,26 @@ private
   end
 
   def as_list?(opts)
-    if as_from_opts(opts) == "select"
-      return true
-    else
-      return false
-    end
+    return true if as_from_opts(opts) == "select"
+    false
   end
 
   def as_from_opts(attribute_name, opts)
     if opts[:as].present?
-      return opts[:as].to_s
-    elsif opts[:collection] || attribute_name.end_with?('country')
+      return opts.fetch(:as).to_s
+    elsif opts[:collection] || attribute_name.end_with?("country")
       return "select"
     end
 
-    if column = @class.columns_hash[attribute_name]
-      if column.type == :boolean
-        return "boolean"
-      end
-    end
+    column = @class.columns_hash[attribute_name]
+    return "boolean" if column && column.type == :boolean
 
-    return "text"
+    "text"
   end
 
-  def real_name(name, opts)
-    predicates = Ransack::Configuration.predicates.map(&:first).
-      map { |predicate| Regexp.escape(predicate) }.join("|")
-    match = name.to_s.match(/^(.+)_(#{predicates})$/)
+  def real_name(name)
+    match = name.to_s.match(SimpleFormRansack::FormProxy.predicates_regex)
+
     if match
       return match[1]
     else

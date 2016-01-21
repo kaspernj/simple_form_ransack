@@ -4,7 +4,7 @@ class CreateUserRoles < ActiveRecord::Migration
       t.integer :user_id
       t.string :role
     end
-    
+
     add_index :user_roles, :user_id
   end
 end

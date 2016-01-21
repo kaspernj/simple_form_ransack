@@ -106,9 +106,25 @@ private
     "text"
   end
 
-  def real_name(name, _opts)
-    match = name.to_s.match(/^(.+)_(eq|cont|eq_any|gteq|lteq|gt|lt|start|end)$/)
-    return match[1] if match
-    raise "Couldn't figure out attribute name from: #{name}"
+  def real_name(name, opts)
+    match = name.to_s.match(SimpleFormRansack::FormProxy.predicates_regex)
+
+    if match
+      return match[1]
+    else
+      raise "Couldn't figure out attribute name from: #{name}"
+    end
+  end
+
+  def self.predicates_regex
+    @predicates_regex ||= nil
+
+    unless @predicates_regex
+      predicates = Ransack::Configuration.predicates.map(&:first).
+      map { |predicate| Regexp.escape(predicate) }.join("|")
+      @predicates_regex = /^(.+)_(#{predicates})$/
+    end
+
+    @predicates_regex
   end
 end

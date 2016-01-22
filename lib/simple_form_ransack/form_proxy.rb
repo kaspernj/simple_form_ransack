@@ -14,9 +14,9 @@ class SimpleFormRansack::FormProxy
   end
 
   def initialize(args)
-    @resource = args.fetch(:resource)
-    @object = @resource.object
-    @class = @resource.klass
+    @ransack = args.fetch(:ransack)
+    @object = @ransack.object
+    @class = @ransack.klass
     @params = args.fetch(:params)
     @form = args.fetch(:form)
 

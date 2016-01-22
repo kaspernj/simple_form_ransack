@@ -58,6 +58,7 @@ private
     end
 
     @as ||= "string"
+    @opts[:as] = @as.to_sym
   end
 
   def set_name
@@ -93,8 +94,11 @@ private
     return if label_parts.empty?
 
     @opts[:label] = label_parts.join
-    return unless @match_type == "cont"
-    @opts[:label] << " #{I18n.t("simple_form_ransack.match_types.contains")}"
+
+    prepend_label_for = ["cont", "gteq", "lteq"]
+
+    return unless prepend_label_for.include?(@match_type)
+    @opts[:label] << " #{I18n.t("simple_form_ransack.match_types.#{@match_type}")}"
   end
 
   def label_part(attribute_name_part)

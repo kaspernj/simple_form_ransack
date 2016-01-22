@@ -1,4 +1,6 @@
 da:
   simple_form_ransack:
     match_types:
-      contains: indeholder
+      cont: indeholder
+      gteq: større eller lig med
+      lteq: mindre eller lig med

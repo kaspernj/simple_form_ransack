@@ -51,6 +51,11 @@ describe "tasks_index" do
     label = find("label[for='q_user_email_or_name_cont']")
     find("#q_user_email_or_name_cont")
 
-    expect(label.text).to eq "Customer email, name contains"
+    expect(label.text).to eq "Customer email or name contains"
+  end
+
+  it "shows the correct name for tripple attributes" do
+    label = find("label[for='q_user_id_or_user_email_or_user_password_cont']")
+    expect(label.text).to eq "Customer ID, customer email or customer password contains"
   end
 end

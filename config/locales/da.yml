@@ -1,5 +1,8 @@
 da:
   simple_form_ransack:
+    words:
+      or: eller
+      and: og
     match_types:
       cont: indeholder
       gteq: større eller lig med

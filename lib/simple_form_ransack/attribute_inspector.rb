@@ -25,15 +25,9 @@ class SimpleFormRansack::AttributeInspector
       # The last part should be the attribute name.
       if index == @name_parts.length - 1
         attribute_result = attribute_by_builtup
-
-        if attribute_result
-          puts "Attribute was: #{attribute_result.fetch(:name)}" if @debug
-          @attribute = attribute_result.fetch(:name)
-          break
-        else
-          puts "Not found: #{@name_builtup.join("_")}" if @debug
-          next
-        end
+        next unless attribute_result
+        @attribute = attribute_result.fetch(:name)
+        break
       end
 
       # Try next - maybe next key need to be added? (which is common!)
@@ -41,11 +35,7 @@ class SimpleFormRansack::AttributeInspector
       next unless reflection_result
 
       @name_builtup = []
-      name = reflection_result.fetch(:name)
       reflection = reflection_result.fetch(:reflection)
-
-      puts "Name: #{name}" if @debug
-      puts "Reflection: #{reflection}" if @debug
 
       @current_clazz = reflection.klass
       @generated_name_classes << {clazz: @current_clazz, reflection: reflection}
@@ -60,31 +50,33 @@ class SimpleFormRansack::AttributeInspector
 
   # Generates the complicated label and returns it.
   def generated_label
-    name = ""
+    @generated_label = ""
 
     if @generated_name_classes.last
       clazz = @generated_name_classes.last.fetch(:clazz)
       reflection = @generated_name_classes.last.fetch(:reflection)
 
       if reflection.collection?
-        name << clazz.model_name.human(count: 2)
+        @generated_label << clazz.model_name.human(count: 2)
       else
-        name << clazz.model_name.human
+        @generated_label << clazz.model_name.human
       end
     end
 
-    name << " " unless name.empty?
-
-    if @attribute == "id" && @as != "string"
-      # Don't add "id" to label, because it is being shown as a collection
-    else
-      name << @current_clazz.human_attribute_name(@attribute).to_s.downcase
-    end
-
-    name
+    add_id_to_generated_label
+    @generated_label
   end
 
 private
+
+  def add_id_to_generated_label
+    if @attribute == "id" && @as != "string"
+      # Don't add "id" to label, because it is being shown as a collection
+    else
+      @generated_label << " " unless @generated_label.empty?
+      @generated_label << @current_clazz.human_attribute_name(@attribute).to_s.downcase
+    end
+  end
 
   def reflection_by_builtup
     total_name = @name_builtup.join("_")

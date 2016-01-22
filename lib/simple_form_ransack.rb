@@ -1,5 +1,6 @@
 module SimpleFormRansack
   autoload :AttributeInspector, "simple_form_ransack/attribute_inspector"
+  autoload :InputManipulator, "simple_form_ransack/input_manipulator"
   autoload :FormProxy, "simple_form_ransack/form_proxy"
 
   def self.locale_files

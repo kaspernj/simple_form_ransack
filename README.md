@@ -44,7 +44,7 @@ end
 
 In your views:
 ```
-<%= simple_search_form_for @ransack, @ransack_params do |f| %>
+<%= simple_search_form_for @ransack do |f| %>
   <%= f.input :name_cont %>
   <%= f.submit %>
 <% end %>

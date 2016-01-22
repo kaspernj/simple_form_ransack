@@ -14,7 +14,14 @@ describe "tasks_index" do
     expect(page.html).to include "name=\"q[name_cont]\""
     expect(page.html).to include "method=\"get\""
     expect(page.html).to include "<option selected=\"selected\" value=\"1\">Finished</option>"
-    expect(page.html).to include "<option selected=\"selected\" value=\"DK\">Denmark</option>"
+  end
+
+  it "handels countries correctly" do
+    country_select = find("#q_user_country_eq")
+    expect(country_select["name"]).to eq "q[user_country_eq]"
+
+    denmark_option = find("#q_user_country_eq option[value='DK']")
+    expect(denmark_option["selected"]).to eq "selected"
   end
 
   it "handles sub models correctly" do

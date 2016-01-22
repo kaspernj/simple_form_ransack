@@ -51,14 +51,15 @@ private
 
     if @opts[:as].present?
       @as = @opts.fetch(:as).to_s
-    elsif @opts[:collection] || @attribute_name.to_s.end_with?("country")
+    elsif @opts[:collection]
       @as = "select"
+    elsif @attribute_name.to_s.end_with?("country")
+      @as = "country"
     elsif column && column.type == :boolean
       @as = "boolean"
     end
 
     @as ||= "string"
-    @opts[:as] = @as.to_sym
   end
 
   def set_name
@@ -94,8 +95,7 @@ private
     return if label_parts.empty?
 
     @opts[:label] = label_parts.join
-
-    prepend_label_for = ["cont", "gteq", "lteq"]
+    prepend_label_for = %w(cont gteq lteq)
 
     return unless prepend_label_for.include?(@match_type)
     @opts[:label] << " #{I18n.t("simple_form_ransack.match_types.#{@match_type}")}"
@@ -117,7 +117,7 @@ private
   end
 
   def set_value
-    if @as == "select"
+    if @as == "select" || @as == "country"
       set_value_for_select
     elsif @as == "check_boxes" || @as == "radio_buttons"
       set_value_for_checked

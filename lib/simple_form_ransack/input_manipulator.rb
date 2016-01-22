@@ -44,6 +44,9 @@ private
 
     @attribute_name = match[1]
     @match_type = match[2]
+
+    @name_parts = @attribute_name.split(/_(or|and)_/)
+    @name_parts_length = @name_parts.length
   end
 
   def calculate_as
@@ -74,9 +77,9 @@ private
   def set_label
     label_parts = []
 
-    @attribute_name.split(/_(or|and)_/).each do |attribute_name_part|
+    @name_parts.each_with_index do |attribute_name_part, index|
       if attribute_name_part == "and" || attribute_name_part == "or"
-        label_parts << ", " unless label_parts.empty?
+        label_parts << add_between_label(index, attribute_name_part) unless label_parts.empty?
         next
       end
 
@@ -89,6 +92,14 @@ private
     end
 
     label_from_parts(label_parts)
+  end
+
+  def add_between_label(index, attribute_name_part)
+    if index == @name_parts_length - 2
+      " #{I18n.t("simple_form_ransack.words.#{attribute_name_part}")} "
+    else
+      ", "
+    end
   end
 
   def label_from_parts(label_parts)

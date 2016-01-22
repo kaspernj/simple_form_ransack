@@ -1,5 +1,8 @@
 en:
   simple_form_ransack:
+    words:
+      or: or
+      and: and
     match_types:
       cont: contains
       gteq: greather than or equals

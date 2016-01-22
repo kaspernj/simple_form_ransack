@@ -17,8 +17,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 4.0.0"
 
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "capybara", "2.6.0"
+  s.add_development_dependency "sqlite3", "1.3.9"
+  s.add_development_dependency "rspec-rails", "3.4.0"
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "forgery"
   s.add_development_dependency "ransack"

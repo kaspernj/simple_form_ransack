@@ -1,0 +1,6 @@
+da:
+  simple_form_ransack:
+    match_types:
+      cont: indeholder
+      gteq: større eller lig med
+      lteq: mindre eller lig med

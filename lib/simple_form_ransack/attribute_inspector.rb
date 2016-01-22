@@ -14,7 +14,7 @@ class SimpleFormRansack::AttributeInspector
     @current_clazz = @clazz
     @name_builtup = []
 
-    research unless has_attribute_directly?
+    research unless attribute_directly?
   end
 
   # Loop through the name parts and inspectors reflections with it.
@@ -100,7 +100,7 @@ private
     false
   end
 
-  def has_attribute_directly?
+  def attribute_directly?
     @clazz.attribute_names.find { |name| name.to_s == @ransack_name.to_s }
   end
 end

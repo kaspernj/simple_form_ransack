@@ -29,6 +29,9 @@ Style/AccessModifierIndentation:
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
+Style/ConditionalAssignment:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

@@ -30,6 +30,7 @@ private
   def set_values
     @opts[:required] = false unless @opts.key?(:required)
     @opts[:input_html] = @input_html
+    @opts[:as] = @as # This fixes bug with delegated methods in SimpleForm - don't remove
 
     set_value
     set_name

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_form_ransack (0.0.11)
+    simple_form_ransack (0.0.12)
       rails (>= 4.0.0)
 
 GEM

@@ -43,7 +43,7 @@ end
 ```
 
 In your views:
-```
+```erb
 <%= simple_search_form_for @ransack do |f| %>
   <%= f.input :name_cont %>
   <%= f.submit %>

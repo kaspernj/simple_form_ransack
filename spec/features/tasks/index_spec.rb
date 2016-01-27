@@ -39,6 +39,11 @@ describe "tasks_index" do
     expect(finished_option["selected"]).to eq "selected"
   end
 
+  it "includes blank options by default for select and country" do
+    expect(find("#q_user_country_eq option[value='']").text).to eq ""
+    expect(find("#q_finished_eq option[value='']").text).to eq ""
+  end
+
   it "allows custom inputs to be defined" do
     input = find("#q_custom_input")
     expect(input["class"]).to eq "string optional"

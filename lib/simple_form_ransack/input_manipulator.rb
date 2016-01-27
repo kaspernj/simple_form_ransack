@@ -34,6 +34,7 @@ private
 
     set_value
     set_name
+    set_include_blank
     set_label if @attribute_name && !@opts.key?(:label)
 
     @args << @opts
@@ -173,5 +174,11 @@ private
     else
       @input_html[:value] = ""
     end
+  end
+
+  def set_include_blank
+    return if @opts.key?(:include_blank)
+    return if @as != "select" && @as != "country"
+    @opts[:include_blank] = true
   end
 end

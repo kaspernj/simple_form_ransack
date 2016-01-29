@@ -25,6 +25,9 @@ end
 In "application.rb" (for translations):
 ```ruby
 class Application
+  # It's important that available locales is defined before calling SimpleFormRansack.locale_files
+  config.i18n.available_locales = [:da, :en]
+
   config.i18n.load_path += SimpleFormRansack.locale_files
 end
 ```

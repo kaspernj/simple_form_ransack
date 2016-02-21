@@ -12,14 +12,13 @@ module SimpleFormRansackHelper
 
     model_class = ransack.klass
     sample_model = model_class.new
-
-    search_key = ransack.context.search_key
+    ransack_params = ransack.instance_variable_get(:@_registered_params)
 
     simple_form_for(sample_model, *args) do |form|
       form_proxy = SimpleFormRansack::FormProxy.new(
         ransack: ransack,
         form: form,
-        params: params[search_key] || {}
+        params: ransack_params
       )
 
       yield form_proxy

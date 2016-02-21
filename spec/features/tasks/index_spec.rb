@@ -64,6 +64,20 @@ describe "tasks_index" do
       label = find("label[for='q_user_id_or_user_email_or_user_password_cont']")
       expect(label.text).to eq "Customer ID, customer email or customer password contains"
     end
+
+    it "generates correct labels for eq_any" do
+      kasper_label = find(".task_user_id.check_boxes label[for='task_user_id_1']")
+      kasper_checkbox = find(".task_user_id.check_boxes input[type=checkbox]#task_user_id_1")
+
+      christina_label = find(".task_user_id.check_boxes label[for='task_user_id_2']")
+      christina_checkbox = find(".task_user_id.check_boxes input[type=checkbox]#task_user_id_2")
+
+      expect(kasper_label.text).to eq "Kasper"
+      expect(kasper_checkbox.value).to eq "1"
+
+      expect(christina_label.text).to eq "Christina"
+      expect(christina_checkbox.value).to eq "2"
+    end
   end
 
   context "registers given arguments" do

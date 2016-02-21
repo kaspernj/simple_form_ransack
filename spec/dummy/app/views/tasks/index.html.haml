@@ -8,6 +8,7 @@
   = f.input :user_id_or_user_email_or_user_password_cont
   = f.input :finished_eq, as: :select, collection: {"Finished" => "1", "Not finished" => "0"}
   = f.input :user_id_eq
+  = f.input :user_id_eq_any, collection: {"Kasper" => 1, "Christina" => 2}
   = f.input :user_user_roles_role_eq
   = f.input :user_country_eq
 

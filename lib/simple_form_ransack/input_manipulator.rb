@@ -57,11 +57,7 @@ private
     if @opts[:as].present?
       @as = @opts.fetch(:as).to_s
     elsif @opts[:collection]
-      if @match_type == "eq_any"
-        @as = "check_boxes"
-      else
-        @as = "select"
-      end
+      calculate_as_collection
     elsif @attribute_name.to_s.end_with?("country")
       @as = "country"
     elsif column && column.type == :boolean
@@ -69,6 +65,14 @@ private
     end
 
     @as ||= "string"
+  end
+
+  def calculate_as_collection
+    if @match_type == "eq_any"
+      @as = "check_boxes"
+    else
+      @as = "select"
+    end
   end
 
   def set_name

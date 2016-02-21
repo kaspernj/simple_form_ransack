@@ -57,7 +57,11 @@ private
     if @opts[:as].present?
       @as = @opts.fetch(:as).to_s
     elsif @opts[:collection]
-      @as = "select"
+      if @match_type == "eq_any"
+        @as = "check_boxes"
+      else
+        @as = "select"
+      end
     elsif @attribute_name.to_s.end_with?("country")
       @as = "country"
     elsif column && column.type == :boolean
@@ -68,7 +72,9 @@ private
   end
 
   def set_name
-    @input_html[:id] = "q_#{@name}"
+    # This overrides the individual check boxes and messes up the label targets
+    # There won't be any main input anyway, so it doesn't mess anything up either
+    @input_html[:id] = "q_#{@name}" unless @as == "check_boxes"
 
     return if @input_html.key?(:name)
 

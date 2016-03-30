@@ -19,6 +19,7 @@ class SimpleFormRansack::InputManipulator
     calculate_as
 
     set_values
+    set_max_length
   end
 
   def attribute_name
@@ -190,5 +191,18 @@ private
     return if @opts.key?(:include_blank)
     return if @as != "select" && @as != "country"
     @opts[:include_blank] = true
+  end
+
+  def set_max_length
+    column = @class.columns.find { |column_i| column_i.name == attribute_name }
+
+    return unless column
+    return unless column.sql_type.include?("int")
+
+    match = column.sql_type.match(/\((\d+)\)/)
+    return unless match
+
+    @input_html[:maxlength] = match[1]
+    @input_html[:size] = match[1]
   end
 end

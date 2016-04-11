@@ -1,11 +1,16 @@
 class SimpleFormRansack::FormProxy
   def self.predicates_regex
     unless @predicates_regex
-      predicates = Ransack::Configuration
-        .predicates
-        .map(&:first)
-        .map { |predicate| Regexp.escape(predicate) }
-        .join("|")
+      if Object.const_defined?(:Ransack)
+        predicates = Ransack::Configuration
+          .predicates
+          .map(&:first)
+          .map { |predicate| Regexp.escape(predicate) }
+          .join("|")
+      else
+        # BazaModels support
+        predicates = "cont|eq|gteq|lteq|gt|lt|eq_any"
+      end
 
       @predicates_regex = /^(.+)_(#{predicates})$/
     end
@@ -15,7 +20,6 @@ class SimpleFormRansack::FormProxy
 
   def initialize(args)
     @ransack = args.fetch(:ransack)
-    @object = @ransack.object
     @class = @ransack.klass
     @params = args.fetch(:params)
     @form = args.fetch(:form)

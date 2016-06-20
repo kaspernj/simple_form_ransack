@@ -5,7 +5,11 @@ module SimpleFormRansack
 
   def self.locale_files
     files = []
-    available_locales = (I18n.available_locales + Rails.application.config.i18n.available_locales).uniq
+
+    available_locales = []
+    available_locales += I18n.available_locales if I18n.available_locales
+    available_locales += Rails.application.config.i18n.available_locales if Rails.application.config.i18n.available_locales
+    available_locales.uniq!
 
     available_locales.each do |locale|
       path = "#{File.realpath("#{File.dirname(__FILE__)}/../config/locales")}/#{locale}.yml"

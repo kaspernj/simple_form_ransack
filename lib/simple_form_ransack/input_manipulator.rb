@@ -5,6 +5,7 @@ class SimpleFormRansack::InputManipulator
     @args = args.fetch(:args)
     @name = args.fetch(:name)
     @params = args.fetch(:params)
+    @search_key = args.fetch(:search_key)
     @class = args.fetch(:class)
 
     if @args.last.is_a?(Hash)
@@ -79,11 +80,11 @@ private
   def set_name
     # This overrides the individual check boxes and messes up the label targets
     # There won't be any main input anyway, so it doesn't mess anything up either
-    @input_html[:id] = "q_#{@name}" unless @as == "check_boxes"
+    @input_html[:id] = "#{@search_key}_#{@name}" unless @as == "check_boxes"
 
     return if @input_html.key?(:name)
 
-    @input_html[:name] = "q[#{@name}]"
+    @input_html[:name] = "#{@search_key}[#{@name}]"
     @input_html[:name] << "[]" if @as == "check_boxes"
   end
 

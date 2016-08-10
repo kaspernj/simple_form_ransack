@@ -32,6 +32,7 @@ class SimpleFormRansack::FormProxy
       name: name,
       args: args,
       params: @params,
+      search_key: @ransack.context.search_key,
       class: @class
     )
 

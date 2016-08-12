@@ -175,18 +175,18 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (= 2.6.0)
-  codeclimate-test-reporter
-  country_select
-  factory_girl_rails
-  forgery
-  haml-rails
+  codeclimate-test-reporter (= 0.4.7)
+  country_select (= 2.2.0)
+  factory_girl_rails (= 4.4.1)
+  forgery (= 0.6.0)
+  haml-rails (= 0.5.3)
   pry (= 0.10.4)
-  ransack
+  ransack (= 1.2.3)
   rspec-rails (= 3.4.0)
-  rubocop
-  simple_form
+  rubocop (= 0.36.0)
+  simple_form (= 3.0.2)
   simple_form_ransack!
   sqlite3 (= 1.3.9)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

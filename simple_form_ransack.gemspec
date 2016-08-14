@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Ransack and SimpleForm combined."
   s.description = "Makes it easy to use SimpleForm::FormBuilder with Ransack without constantly having to supply labels and other pains."
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", ">= 4.0.0"
 
@@ -21,12 +21,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3", "1.3.9"
   s.add_development_dependency "rspec-rails", "3.4.0"
   s.add_development_dependency "pry", "0.10.4"
-  s.add_development_dependency "factory_girl_rails"
-  s.add_development_dependency "forgery"
-  s.add_development_dependency "ransack"
-  s.add_development_dependency "haml-rails"
-  s.add_development_dependency "simple_form"
-  s.add_development_dependency "country_select"
-  s.add_development_dependency "codeclimate-test-reporter"
-  s.add_development_dependency "rubocop"
+  s.add_development_dependency "factory_girl_rails", "4.4.1"
+  s.add_development_dependency "forgery", "0.6.0"
+  s.add_development_dependency "ransack", "1.2.3"
+  s.add_development_dependency "haml-rails", "0.5.3"
+  s.add_development_dependency "simple_form", "3.0.2"
+  s.add_development_dependency "country_select", "2.2.0"
+  s.add_development_dependency "codeclimate-test-reporter", "0.4.7"
+  s.add_development_dependency "rubocop", "0.36.0"
 end

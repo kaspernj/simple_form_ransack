@@ -53,4 +53,12 @@ In your views:
 <% end %>
 ```
 
+Instead of something like this with a combination of Ransack and SimpleForm:
+```erb
+<%= search_form_for @ransack, builder: SimpleForm::FormBuilder do |f| %>
+  <%= f.input :name_cont, label: t(".attribute_contains", attribute: User.human_attribute_name(:name)), input_html: {value: @ransack_params[:name_cont]} %>
+  <%= f.submit %>
+<% end %>
+```
+
 The `name_cont` input field now gets it label, hint and more translated as normally for a input with `name` but functions with the input-name `q[name_cont]`, making it much easier to use Ransack and SimpleForm, because you don't have to give label, hint or anything else manually.

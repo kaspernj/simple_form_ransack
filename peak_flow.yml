@@ -1,0 +1,4 @@
+script:
+  - cd spec/dummy && RAILS_ENV=test bundle exec rake db:schema:load
+  - bundle exec rspec
+  - bundle exec rubocop

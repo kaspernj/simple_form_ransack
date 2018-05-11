@@ -5,7 +5,6 @@ require "rspec/rails"
 require "capybara/rspec"
 require "capybara/rails"
 require "ransack"
-require "haml-rails"
 require "simple_form"
 require "country_select"
 

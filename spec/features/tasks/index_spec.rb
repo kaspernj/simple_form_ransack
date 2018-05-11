@@ -5,7 +5,6 @@ describe "tasks_index" do
     before do
       visit tasks_path(q: {finished_eq: "1", user_country_eq: "DK"})
 
-      expect(page).to have_http_status(:success)
       expect(current_path).to eq tasks_path
     end
 

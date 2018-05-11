@@ -4,6 +4,7 @@ class SimpleFormRansack::FormProxy
       if Object.const_defined?(:Ransack)
         predicates = Ransack::Configuration
           .predicates
+          .sorted_names_with_underscores
           .map(&:first)
           .map { |predicate| Regexp.escape(predicate) }
           .join("|")

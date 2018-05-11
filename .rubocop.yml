@@ -36,6 +36,9 @@ Style/Documentation:
 Style/EmptyLines:
   Enabled: false
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 Style/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 

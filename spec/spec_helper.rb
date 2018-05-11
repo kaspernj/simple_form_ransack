@@ -1,8 +1,3 @@
-if ENV["CODECLIMATE_REPO_TOKEN"]
-  require "codeclimate-test-reporter"
-  CodeClimate::TestReporter.start
-end
-
 ENV["RAILS_ENV"] ||= "test"
 require_relative "dummy/config/environment"
 
@@ -10,7 +5,6 @@ require "rspec/rails"
 require "capybara/rspec"
 require "capybara/rails"
 require "ransack"
-require "haml-rails"
 require "simple_form"
 require "country_select"
 

@@ -27,6 +27,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "haml-rails", "0.5.3"
   s.add_development_dependency "simple_form", "3.0.2"
   s.add_development_dependency "country_select", "2.2.0"
-  s.add_development_dependency "codeclimate-test-reporter", "0.4.7"
   s.add_development_dependency "rubocop", "0.36.0"
 end

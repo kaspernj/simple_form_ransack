@@ -26,6 +26,7 @@ class SimpleFormRansack::AttributeInspector
       if index == @name_parts.length - 1
         attribute_result = attribute_by_builtup
         next unless attribute_result
+
         @attribute = attribute_result.fetch(:name)
         break
       end
@@ -45,6 +46,7 @@ class SimpleFormRansack::AttributeInspector
   # Returns true if a complicated label could be generated and simple form should not do this itself.
   def generated_label?
     return true if @attribute && @generated_name_classes.any?
+
     false
   end
 
@@ -82,6 +84,7 @@ private
     total_name = @name_builtup.join("_")
     result = @current_clazz.reflections.find { |name, _reflection| name.to_s == total_name }
     return {name: result[0], reflection: result[1]} if result
+
     false
   end
 
@@ -89,6 +92,7 @@ private
     total_name = @name_builtup.join("_")
     result = @current_clazz.attribute_names.find { |name| name.to_s == total_name }
     return {name: result} if result
+
     false
   end
 

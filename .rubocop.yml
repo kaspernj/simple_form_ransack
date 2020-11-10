@@ -1,16 +1,33 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
     - db/schema.rb
     - spec/dummy/db/schema.rb
+  NewCops: enable
 
-# https://github.com/AtomLinter/linter-rubocop/issues/2
-Style/FileName:
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Layout/LineLength:
+  Max: 160
+
+Layout/EmptyLines:
   Enabled: false
 
-Metrics/LineLength:
-  Max: 160
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Lint/MissingSuper:
+  Enabled: false
 
 Metrics/MethodLength:
   Max: 50
@@ -21,11 +38,16 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 250
 
-Style/AccessModifierIndentation:
-  EnforcedStyle: outdent
+# https://github.com/AtomLinter/linter-rubocop/issues/2
+Naming/FileName:
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
+
+# Disabled on purpose: https://github.com/bbatsov/rubocop/issues/1758
+Layout/ClosingParenthesisIndentation:
+  Enabled: false
 
 Style/ConditionalAssignment:
   Enabled: false
@@ -33,14 +55,8 @@ Style/ConditionalAssignment:
 Style/Documentation:
   Enabled: false
 
-Style/EmptyLines:
-  Enabled: false
-
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-Style/MultilineMethodCallIndentation:
-  EnforcedStyle: indented
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -54,16 +70,6 @@ Style/NilComparison:
 Style/SignalException:
   EnforcedStyle: only_raise
 
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
-
-Style/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: no_space
-
 Style/TrivialAccessors:
   ExactNameMatch: true
   Enabled: true
-
-# Disabled on purpose: https://github.com/bbatsov/rubocop/issues/1758
-Style/ClosingParenthesisIndentation:
-  Enabled: false

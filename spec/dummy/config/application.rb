@@ -1,4 +1,4 @@
-require File.expand_path("../boot", __FILE__)
+require File.expand_path("boot", __dir__)
 
 # Pick the frameworks you want:
 require "active_record/railtie"
@@ -25,6 +25,6 @@ class Dummy::Application < Rails::Application
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
 
   config.i18n.default_locale = :en
-  config.i18n.available_locales = [:da, :en]
+  config.i18n.available_locales = %i[da en]
   config.i18n.load_path += SimpleFormRansack.locale_files
 end

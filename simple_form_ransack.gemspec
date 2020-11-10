@@ -1,4 +1,4 @@
-$LOAD_PATH.push File.expand_path("../lib", __FILE__)
+$LOAD_PATH.push File.expand_path("lib", __dir__)
 
 # Maintain your gem's version:
 require "simple_form_ransack/version"
@@ -18,13 +18,13 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", ">= 5.0.0"
   s.add_dependency "ransack", ">= 1.8.6"
 
-  s.add_development_dependency "capybara", "3.33.0"
-  s.add_development_dependency "sqlite3", "1.4.2"
-  s.add_development_dependency "rspec-rails", "4.0.1"
-  s.add_development_dependency "pry", "0.13.1"
-  s.add_development_dependency "factory_girl_rails", "4.9.0"
-  s.add_development_dependency "forgery", "0.8.1"
-  s.add_development_dependency "simple_form", "4.0.0"
-  s.add_development_dependency "country_select", "4.0.0"
-  s.add_development_dependency "rubocop", "0.36.0"
+  s.add_development_dependency "capybara"
+  s.add_development_dependency "country_select"
+  s.add_development_dependency "factory_girl_rails"
+  s.add_development_dependency "forgery"
+  s.add_development_dependency "pry"
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "rubocop"
+  s.add_development_dependency "simple_form"
+  s.add_development_dependency "sqlite3"
 end

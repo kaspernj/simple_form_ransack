@@ -92,7 +92,7 @@ private
     label_parts = []
 
     @name_parts.each_with_index do |attribute_name_part, index|
-      if attribute_name_part == "and" || attribute_name_part == "or"
+      if %w[and or].include?(attribute_name_part)
         label_parts << add_between_label(index, attribute_name_part) unless label_parts.empty?
         next
       end
@@ -120,9 +120,10 @@ private
     return if label_parts.empty?
 
     @opts[:label] = label_parts.join
-    prepend_label_for = %w(cont gteq lteq)
+    prepend_label_for = %w[cont gteq lteq]
 
     return unless prepend_label_for.include?(@match_type)
+
     @opts[:label] << " #{I18n.t("simple_form_ransack.match_types.#{@match_type}")}"
   end
 
@@ -175,6 +176,7 @@ private
 
   def set_value_for_boolean
     return if @input_html.key?(:checked)
+
     @input_html[:checked] = ("checked" if @params[@name] == "1")
   end
 
@@ -191,6 +193,7 @@ private
   def set_include_blank
     return if @opts.key?(:include_blank)
     return if @as != "select" && @as != "country"
+
     @opts[:include_blank] = true
   end
 

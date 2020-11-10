@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "ransack", ">= 1.8.6"
 
   s.add_development_dependency "capybara", "3.33.0"
-  s.add_development_dependency "sqlite3", "1.3.9"
+  s.add_development_dependency "sqlite3", "1.4.2"
   s.add_development_dependency "rspec-rails", "4.0.1"
   s.add_development_dependency "pry", "0.10.4"
   s.add_development_dependency "factory_girl_rails", "4.9.0"

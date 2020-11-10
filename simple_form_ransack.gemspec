@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", "3.7.2"
   s.add_development_dependency "pry", "0.10.4"
   s.add_development_dependency "factory_girl_rails", "4.9.0"
-  s.add_development_dependency "forgery", "0.6.0"
+  s.add_development_dependency "forgery", "0.8.1"
   s.add_development_dependency "simple_form", "4.0.0"
   s.add_development_dependency "country_select", "2.2.0"
   s.add_development_dependency "rubocop", "0.36.0"

@@ -1,7 +1,3 @@
-[![Code Climate](https://codeclimate.com/github/kaspernj/simple_form_ransack/badges/gpa.svg)](https://codeclimate.com/github/kaspernj/simple_form_ransack)
-[![Test Coverage](https://codeclimate.com/github/kaspernj/simple_form_ransack/badges/coverage.svg)](https://codeclimate.com/github/kaspernj/simple_form_ransack)
-[![Build Status](https://img.shields.io/shippable/540e7b9e3479c5ea8f9ec24f.svg)](https://app.shippable.com/projects/540e7b9e3479c5ea8f9ec24f/builds/latest)
-
 # SimpleFormRansack
 
 SimpleForm and Ransack combined.

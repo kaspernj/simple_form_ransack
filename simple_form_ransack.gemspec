@@ -25,6 +25,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "factory_girl_rails", "4.9.0"
   s.add_development_dependency "forgery", "0.8.1"
   s.add_development_dependency "simple_form", "4.0.0"
-  s.add_development_dependency "country_select", "2.2.0"
+  s.add_development_dependency "country_select", "4.0.0"
   s.add_development_dependency "rubocop", "0.36.0"
 end

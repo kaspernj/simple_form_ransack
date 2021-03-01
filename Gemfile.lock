@@ -161,7 +161,7 @@ GEM
       activerecord (>= 5.2.4)
       activesupport (>= 5.2.4)
       i18n
-    regexp_parser (2.0.3)
+    regexp_parser (2.1.1)
     rexml (3.2.4)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
@@ -180,7 +180,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.1)
-    rubocop (1.9.1)
+    rubocop (1.11.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)

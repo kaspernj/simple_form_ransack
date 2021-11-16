@@ -20,7 +20,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.infer_spec_type_from_file_location!
 
-  config.before(:each) do
+  config.before do
     Capybara.reset_sessions!
   end
 end

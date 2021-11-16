@@ -92,7 +92,7 @@ private
     label_parts = []
 
     @name_parts.each_with_index do |attribute_name_part, index|
-      if %w[and or].include?(attribute_name_part)
+      if attribute_name_part == "and" || attribute_name_part == "or"
         label_parts << add_between_label(index, attribute_name_part) unless label_parts.empty?
         next
       end

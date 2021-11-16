@@ -143,7 +143,7 @@ private
   end
 
   def set_value
-    if @as == "select" || @as == "country"
+    if @as == "select" || @as == "country" || @as == "select2"
       set_value_for_select
     elsif @as == "check_boxes" || @as == "radio_buttons"
       set_value_for_checked

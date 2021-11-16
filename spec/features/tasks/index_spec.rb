@@ -5,7 +5,7 @@ describe "tasks_index" do
     before do
       visit tasks_path(q: {finished_eq: "1", user_country_eq: "DK"})
 
-      expect(current_path).to eq tasks_path
+      expect(page).to have_current_path(tasks_path, ignore_query: true)
     end
 
     it "displays the correct hints" do
@@ -79,7 +79,7 @@ describe "tasks_index" do
     end
   end
 
-  context "registers given arguments" do
+  context "when given arguments" do
     it "registers default arguments" do
       visit tasks_path(set_default_arguments: true)
       name_cont = find("input[id=q_name_cont]")

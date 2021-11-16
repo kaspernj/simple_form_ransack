@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    simple_form_ransack (0.0.20)
+    simple_form_ransack (0.0.21)
       rails (>= 5.0.0)
       ransack (>= 1.8.6)
 

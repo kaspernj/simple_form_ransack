@@ -5,12 +5,13 @@ require "simple_form_ransack/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "simple_form_ransack"
-  s.version     = SimpleFormRansack::VERSION
-  s.authors     = ["Kasper Johansen"]
-  s.email       = ["k@spernj.org"]
-  s.homepage    = "https://www.github.com/kaspernj/simple_form_ransack"
-  s.summary     = "Ransack and SimpleForm combined."
+  s.name = "simple_form_ransack"
+  s.version = SimpleFormRansack::VERSION
+  s.authors = ["Kasper Johansen"]
+  s.email = ["k@spernj.org"]
+  s.homepage = "https://www.github.com/kaspernj/simple_form_ransack"
+  s.metadata = {"rubygems_mfa_required" => "true"}
+  s.summary = "Ransack and SimpleForm combined."
   s.description = "Makes it easy to use SimpleForm::FormBuilder with Ransack without constantly having to supply labels and other pains."
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

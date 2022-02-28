@@ -13,12 +13,14 @@ Gem::Specification.new do |s|
   s.metadata = {"rubygems_mfa_required" => "true"}
   s.summary = "Ransack and SimpleForm combined."
   s.description = "Makes it easy to use SimpleForm::FormBuilder with Ransack without constantly having to supply labels and other pains."
+  s.metadata["rubygems_mfa_required"] = "true"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", ">= 5.0.0"
+  s.add_dependency "rails", ">= 6.0.0"
   s.add_dependency "ransack", ">= 1.8.6"
 
+  s.add_development_dependency "appraisal"
   s.add_development_dependency "capybara"
   s.add_development_dependency "country_select"
   s.add_development_dependency "factory_girl_rails"

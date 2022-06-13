@@ -229,7 +229,7 @@ GEM
     sixarm_ruby_unaccent (1.2.0)
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
-    sqlite3 (1.4.2)
+    sqlite3 (1.4.3)
     strscan (3.0.2)
     thor (1.2.1)
     timeout (0.2.0)

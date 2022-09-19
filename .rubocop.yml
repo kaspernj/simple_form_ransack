@@ -46,6 +46,9 @@ Metrics/ClassLength:
 Naming/FileName:
   Enabled: false
 
+RSpec/Capybara/SpecificFinders:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: false
 

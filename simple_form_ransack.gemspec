@@ -19,17 +19,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", ">= 6.0.0"
   s.add_dependency "ransack", ">= 1.8.6"
-
-  s.add_development_dependency "appraisal"
-  s.add_development_dependency "capybara"
-  s.add_development_dependency "country_select"
-  s.add_development_dependency "factory_girl_rails"
-  s.add_development_dependency "forgery"
-  s.add_development_dependency "pry"
-  s.add_development_dependency "rspec-rails"
-  s.add_development_dependency "rubocop"
-  s.add_development_dependency "rubocop-performance"
-  s.add_development_dependency "rubocop-rspec"
-  s.add_development_dependency "simple_form"
-  s.add_development_dependency "sqlite3"
 end

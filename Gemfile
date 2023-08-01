@@ -9,9 +9,10 @@ group :development do
   gem "forgery"
   gem "pry"
   gem "rspec-rails"
-  gem "rubocop"
-  gem "rubocop-performance"
-  gem "rubocop-rspec"
+  gem "rubocop", require: false
+  gem "rubocop-capybara", require: false
+  gem "rubocop-performance", require: false
+  gem "rubocop-rspec", require: false
   gem "simple_form"
   gem "sqlite3"
 end

@@ -9,8 +9,12 @@ AllCops:
   NewCops: enable
 
 require:
+  - rubocop-capybara
   - rubocop-performance
   - rubocop-rspec
+
+Capybara/SpecificFinders:
+  Enabled: false
 
 Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
@@ -44,9 +48,6 @@ Metrics/ClassLength:
 
 # https://github.com/AtomLinter/linter-rubocop/issues/2
 Naming/FileName:
-  Enabled: false
-
-RSpec/Capybara/SpecificFinders:
   Enabled: false
 
 RSpec/ExampleLength:

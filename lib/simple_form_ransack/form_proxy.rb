@@ -40,7 +40,7 @@ class SimpleFormRansack::FormProxy
     @form.input(input_manipulator.attribute_name, *args)
   end
 
-  def method_missing(method_name, *args, &blk) # rubocop:disable Style/MissingRespondToMissing
-    @form.__send__(method_name, *args, &blk)
+  def method_missing(...) # rubocop:disable Style/MissingRespondToMissing
+    @form.__send__(...)
   end
 end

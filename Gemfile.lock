@@ -258,6 +258,7 @@ DEPENDENCIES
   pry
   rspec-rails
   rubocop
+  rubocop-capybara
   rubocop-performance
   rubocop-rspec
   simple_form

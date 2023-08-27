@@ -234,7 +234,7 @@ GEM
     simple_form (5.2.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    sqlite3 (1.6.3)
+    sqlite3 (1.6.4)
       mini_portile2 (~> 2.8.0)
     thor (1.2.2)
     timeout (0.4.0)

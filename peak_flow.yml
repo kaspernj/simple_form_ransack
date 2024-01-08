@@ -17,14 +17,14 @@ builds:
       - bundle exec appraisal "rails 7" rspec
   build_3:
     environment:
-      RUBY_VERSION: 3.0.3
-    name: Ruby 3.0.3, Rails 6
+      RUBY_VERSION: 3.3.0
+    name: Ruby 3.3.0, Rails 6
     script:
       - bundle exec appraisal "rails 6" rspec
   build_4:
     environment:
-      RUBY_VERSION: 3.0.3
-    name: Ruby 3.0.3, Rails 7
+      RUBY_VERSION: 3.3.0
+    name: Ruby 3.3.0, Rails 7
     script:
       - bundle exec appraisal "rails 7" rspec
   build_5:

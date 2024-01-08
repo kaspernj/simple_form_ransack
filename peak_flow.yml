@@ -6,7 +6,7 @@ builds:
     name: Ruby 3.3.0, Rails 6
     script:
       - bundle exec appraisal "rails 6" bundle
-      - cd spec/dummy && RAILS_ENV=test bundle exec appraisal "rails 6" rails db:schema:load
+      - cd spec/dummy && RAILS_ENV=test bundle exec rails db:schema:load
       - bundle exec appraisal "rails 6" rspec
   build_2:
     environment:
@@ -14,7 +14,7 @@ builds:
     name: Ruby 3.3.0, Rails 7
     script:
       - bundle exec appraisal "rails 7" bundle
-      - cd spec/dummy && RAILS_ENV=test bundle exec appraisal "rails 7" rails db:schema:load
+      - cd spec/dummy && RAILS_ENV=test bundle exec rails db:schema:load
       - bundle exec appraisal "rails 7" rspec
   build_3:
     name: Linters

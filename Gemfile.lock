@@ -290,6 +290,7 @@ DEPENDENCIES
   country_select
   factory_girl_rails
   forgery
+  nokogiri (= 1.15.5)
   pry
   rspec-rails
   rubocop

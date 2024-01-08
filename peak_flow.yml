@@ -1,6 +1,6 @@
 rvm: true
 before_script:
-  - bundle exec appraisal bundle
+  - bundle exec appraisal bundle update nokogiri
   - cd spec/dummy && RAILS_ENV=test bundle exec rails db:schema:load
 builds:
   build_1:

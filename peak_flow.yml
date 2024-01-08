@@ -1,3 +1,4 @@
+rvm: true
 builds:
   build_1:
     environment:

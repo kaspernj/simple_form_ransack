@@ -1,33 +1,21 @@
-rvm: true
-before_script:
-  - bundle exec appraisal bundle update nokogiri
-  - cd spec/dummy && RAILS_ENV=test bundle exec rails db:schema:load
 builds:
   build_1:
-    environment:
-      RUBY_VERSION: 2.7.8
-    name: Ruby 2.7.8, Rails 6
-    script:
-      - bundle exec appraisal "rails 6" rspec
-  build_2:
-    environment:
-      RUBY_VERSION: 2.7.8
-    name: Ruby 2.7.8, Rails 7
-    script:
-      - bundle exec appraisal "rails 7" rspec
-  build_3:
     environment:
       RUBY_VERSION: 3.3.0
     name: Ruby 3.3.0, Rails 6
     script:
+      - bundle exec appraisal "rails 6" bundle
+      - cd spec/dummy && RAILS_ENV=test bundle exec appraisal "rails 6" rails db:schema:load
       - bundle exec appraisal "rails 6" rspec
-  build_4:
+  build_2:
     environment:
       RUBY_VERSION: 3.3.0
     name: Ruby 3.3.0, Rails 7
     script:
+      - bundle exec appraisal "rails 7" bundle
+      - cd spec/dummy && RAILS_ENV=test bundle exec appraisal "rails 7" rails db:schema:load
       - bundle exec appraisal "rails 7" rspec
-  build_5:
+  build_3:
     name: Linters
     script:
       - bundle exec rubocop

@@ -256,6 +256,7 @@ DEPENDENCIES
   forgery
   pry
   rails (= 6.1.4.6)
+  ransack (< 4.0.0)
   rspec-rails
   rubocop
   rubocop-capybara

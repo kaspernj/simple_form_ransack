@@ -214,7 +214,7 @@ GEM
       i18n
     rdoc (6.6.0)
       psych (>= 4.0.0)
-    regexp_parser (2.9.0)
+    regexp_parser (2.8.3)
     reline (0.4.0)
       io-console (~> 0.5)
     rexml (3.2.6)

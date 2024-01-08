@@ -7,7 +7,6 @@ group :development do
   gem "country_select"
   gem "factory_girl_rails"
   gem "forgery"
-  gem "nokogiri", "1.16.0"
   gem "pry"
   gem "rspec-rails"
   gem "rubocop", require: false

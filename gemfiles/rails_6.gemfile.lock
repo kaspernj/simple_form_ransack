@@ -254,7 +254,6 @@ DEPENDENCIES
   country_select
   factory_girl_rails
   forgery
-  nokogiri (= 1.16.0)
   pry
   rails (= 6.1.4.6)
   rspec-rails

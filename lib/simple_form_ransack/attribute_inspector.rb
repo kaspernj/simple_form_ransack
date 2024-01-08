@@ -39,7 +39,7 @@ class SimpleFormRansack::AttributeInspector
       reflection = reflection_result.fetch(:reflection)
 
       @current_clazz = reflection.klass
-      @generated_name_classes << {clazz: @current_clazz, reflection: reflection}
+      @generated_name_classes << {clazz: @current_clazz, reflection:}
     end
   end
 

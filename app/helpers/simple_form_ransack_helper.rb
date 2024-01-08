@@ -16,8 +16,8 @@ module SimpleFormRansackHelper
 
     simple_form_for(sample_model, *args) do |form|
       form_proxy = SimpleFormRansack::FormProxy.new(
-        ransack: ransack,
-        form: form,
+        ransack:,
+        form:,
         params: ransack_params
       )
 
@@ -42,8 +42,8 @@ module SimpleFormRansackHelper
 
     simple_fields_for(sample_model, *args) do |form|
       form_proxy = SimpleFormRansack::FormProxy.new(
-        ransack: ransack,
-        form: form,
+        ransack:,
+        form:,
         params: ransack_params
       )
 

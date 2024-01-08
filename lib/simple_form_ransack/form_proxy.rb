@@ -30,8 +30,8 @@ class SimpleFormRansack::FormProxy
 
   def input(name, *args)
     input_manipulator = SimpleFormRansack::InputManipulator.new(
-      name: name,
-      args: args,
+      name:,
+      args:,
       params: @params,
       search_key: @ransack.context.search_key,
       class: @class

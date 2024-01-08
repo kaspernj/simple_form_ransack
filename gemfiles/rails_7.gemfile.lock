@@ -143,7 +143,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.5.8)
-    nokogiri (1.15.5-x86_64-linux)
+    nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     parallel (1.24.0)
     parser (3.3.0.2)
@@ -260,7 +260,7 @@ DEPENDENCIES
   country_select
   factory_girl_rails
   forgery
-  nokogiri (= 1.15.5)
+  nokogiri (= 1.15.4)
   pry
   rails (= 7.0.2.2)
   rspec-rails

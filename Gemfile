@@ -7,7 +7,13 @@ group :development do
   gem "country_select"
   gem "factory_girl_rails"
   gem "forgery"
-  gem "nokogiri", "1.15.4"
+
+  if RUBY_VERSION.start_with?("3.")
+    gem "nokogiri", "1.16.0"
+  else
+    gem "nokogiri", "1.15.5"
+  end
+
   gem "pry"
   gem "rspec-rails"
   gem "rubocop", require: false

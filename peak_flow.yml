@@ -5,14 +5,14 @@ before_script:
 builds:
   build_1:
     environment:
-      RUBY_VERSION: 2.7.5
-    name: Ruby 2.7.5, Rails 6
+      RUBY_VERSION: 2.7.8
+    name: Ruby 2.7.8, Rails 6
     script:
       - bundle exec appraisal "rails 6" rspec
   build_2:
     environment:
-      RUBY_VERSION: 2.7.5
-    name: Ruby 2.7.5, Rails 7
+      RUBY_VERSION: 2.7.8
+    name: Ruby 2.7.8, Rails 7
     script:
       - bundle exec appraisal "rails 7" rspec
   build_3:

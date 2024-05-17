@@ -15,5 +15,5 @@ group :development do
   gem "rubocop-performance", require: false
   gem "rubocop-rspec", require: false
   gem "simple_form"
-  gem "sqlite3", "1.7.3"
+  gem "sqlite3", "2.0.1"
 end

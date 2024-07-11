@@ -8,7 +8,7 @@ group :development do
   gem "factory_girl_rails"
   gem "forgery"
   gem "pry"
-  gem "ransack", "< 4.0.0"
+  gem "ransack", "< 5.0.0"
   gem "rspec-rails"
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false

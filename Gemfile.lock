@@ -269,7 +269,7 @@ GEM
     simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
-    sqlite3 (2.7.1)
+    sqlite3 (2.7.2)
       mini_portile2 (~> 2.8.0)
     stringio (3.1.7)
     thor (1.3.2)
@@ -306,7 +306,7 @@ DEPENDENCIES
   rubocop-rspec
   simple_form
   simple_form_ransack!
-  sqlite3 (= 2.7.1)
+  sqlite3 (= 2.7.2)
 
 BUNDLED WITH
    2.3.8

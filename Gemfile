@@ -14,6 +14,7 @@ group :development do
   gem "rubocop-capybara", require: false
   gem "rubocop-performance", require: false
   gem "rubocop-rspec", require: false
+  gem "rubocop-rspec_rails", require: false
   gem "simple_form"
   gem "sqlite3", "2.7.3"
 end

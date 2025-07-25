@@ -9,10 +9,11 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.3
 
-require:
+plugins:
   - rubocop-capybara
   - rubocop-performance
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 Capybara/SpecificFinders:
   Enabled: false

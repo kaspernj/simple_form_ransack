@@ -265,6 +265,10 @@ GEM
     rubocop-rspec (3.6.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
+    rubocop-rspec_rails (2.31.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+      rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
     simple_form (5.3.1)
@@ -306,6 +310,7 @@ DEPENDENCIES
   rubocop-capybara
   rubocop-performance
   rubocop-rspec
+  rubocop-rspec_rails
   simple_form
   simple_form_ransack!
   sqlite3 (= 2.7.3)

@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.authors = ["Kasper Johansen"]
   s.email = ["k@spernj.org"]
   s.homepage = "https://www.github.com/kaspernj/simple_form_ransack"
-  s.metadata = {"rubygems_mfa_required" => "true"}
   s.summary = "Ransack and SimpleForm combined."
   s.description = "Makes it easy to use SimpleForm::FormBuilder with Ransack without constantly having to supply labels and other pains."
   s.metadata["rubygems_mfa_required"] = "true"

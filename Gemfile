@@ -16,5 +16,5 @@ group :development do
   gem "rubocop-rspec", require: false
   gem "rubocop-rspec_rails", require: false
   gem "simple_form"
-  gem "sqlite3", "2.8.0"
+  gem "sqlite3", "2.8.1"
 end

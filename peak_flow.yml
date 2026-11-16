@@ -1,6 +1,10 @@
 rvm: true
 builds:
   build_1:
+    paths:
+      - "**/*"
+      - "!gemfiles/rails_7.gemfile"
+      - "!gemfiles/rails_7.gemfile.lock"
     environment:
       RUBY_VERSION: 3.3.0
     name: Ruby 3.3.0, Rails 6
@@ -9,6 +13,10 @@ builds:
       - cd spec/dummy && RAILS_ENV=test bundle exec rails db:schema:load
       - bundle exec appraisal "rails 6" rspec
   build_2:
+    paths:
+      - "**/*"
+      - "!gemfiles/rails_6.gemfile"
+      - "!gemfiles/rails_6.gemfile.lock"
     environment:
       RUBY_VERSION: 3.3.0
     name: Ruby 3.3.0, Rails 7
@@ -17,6 +25,12 @@ builds:
       - cd spec/dummy && RAILS_ENV=test bundle exec rails db:schema:load
       - bundle exec appraisal "rails 7" rspec
   build_3:
+    paths:
+      - "**/*"
+      - "!gemfiles/rails_6.gemfile"
+      - "!gemfiles/rails_6.gemfile.lock"
+      - "!gemfiles/rails_7.gemfile"
+      - "!gemfiles/rails_7.gemfile.lock"
     name: Linters
     script:
       - bundle exec rubocop

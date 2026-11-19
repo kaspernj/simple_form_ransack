@@ -29,8 +29,6 @@ builds:
       - "**/*"
       - "!gemfiles/rails_6.gemfile"
       - "!gemfiles/rails_6.gemfile.lock"
-      - "!gemfiles/rails_7.gemfile"
-      - "!gemfiles/rails_7.gemfile.lock"
     name: Linters
     script:
       - bundle exec rubocop
